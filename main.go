@@ -8,11 +8,16 @@ import (
 )
 
 func main() {
+
 	//使用并发版并开启了100个协程处理
+	itemChan, err := persist.ItemSaver()
+	if err != nil {
+		panic(err)
+	}
 	e := engine.ConcurrentEngine{
 		Scheduler:   &Scheduler.QueuedScheduler{},
 		WorkerCount: 100,
-		ItemChan: persist.ItemSaver(),
+		ItemChan: itemChan,
 	}
 
 	e.Run(engine.Request{

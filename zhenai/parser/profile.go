@@ -71,9 +71,7 @@ func ParserProfile(contents []byte,url string, name string) engine.ParserResult 
 		result.Requests = append(result.Requests,
 				engine.Request{
 					Url: string(m[1]),
-					ParserFunc: func(c []byte) engine.ParserResult {
-						return 	ParserProfile(c,url,name)
-					},
+					ParserFunc: ProfileParser(name, url),
 				},
 			)
 	}
@@ -81,7 +79,11 @@ func ParserProfile(contents []byte,url string, name string) engine.ParserResult 
 
 }
 
-
+func ProfileParser(name string, url string) engine.ParserFunc {
+	return func(c []byte) engine.ParserResult{
+		return ParserProfile(c, url, name)
+	}
+}
 
 func extractString(contents []byte,re *regexp.Regexp) string {
 	match := re.FindSubmatch(contents)

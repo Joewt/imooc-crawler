@@ -23,5 +23,16 @@ go get gopkg.in/olivere/elastic.v5
 ```
 go get golang.org/x/net
 go get golang.org/x/text
-go get github.com/pkg/errors
 ```
+
+
+### 使用
+
+* 首先运行 elasticsearch
+
+* 运行main.go 爬取数据，存到elastic里
+
+* 运行 frontend/start.go  启动web服务
+
+
+在浏览器输入 自己的ip地址  即可访问

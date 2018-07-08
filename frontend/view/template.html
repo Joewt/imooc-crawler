@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>珍爱网-查询</title>
+
+    <meta name="description" content="Source code generated using layoutit.com">
+    <meta name="author" content="LayoutIt!">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+  </head>
+  <body>
+
+    <div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="main">
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+					<form class="form-inline" method="get">
+						<input class="form-control mr-sm-2 span4" type="text" style="width:500px;" value="{{.Query}}" name="q">
+						<button class="btn btn-primary my-2 my-sm-0" type="submit">
+							Search
+						</button>
+					</form>
+			</nav>
+			</div>
+            <h2 class="main-h2">共为您找到{{.Hits}}条结果。显示从{{.Start}}共{{len .Items}}</h2>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>
+							昵称
+						</th>
+						<th>
+							性别
+						</th>
+						<th>
+							年龄
+						</th>
+						<th>
+							身高
+						</th>
+						<th>
+							体重
+						</th>
+						<th>
+							收入
+						</th>
+						<th>
+							学历
+						</th>
+						<th>
+							工作
+						</th>
+						<th>
+							户口
+						</th>
+						<th>
+							星座
+						</th>
+						<th>
+							购房
+						</th>
+						<th>
+							购车
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{range .Items}}
+					<tr>
+						<td>
+                            <a href="{{.Url}}">{{.Payload.Name}}</a>
+						</td>
+						{{with .Payload}}
+						<td>
+							{{.Gender}}
+						</td>
+						<td>
+							{{.Age}}
+						</td>
+						<td>
+							{{.Height}}
+						</td>
+						<td>
+							{{.Weight}}
+						</td>
+						<td>
+							{{.Income}}
+						</td>
+						<td>
+							{{.Education}}
+						</td>
+						<td>
+							{{.Occupation}}
+						</td>
+						<td>
+							{{.Hukou}}
+						</td>
+						<td>
+							{{.Xingzuo}}
+						</td>
+						<td>
+							{{.House}}
+						</td>
+						<td>
+							{{.Car}}
+						</td>
+						{{end}}
+					</tr>
+					{{else}}
+					<h2>没有找到相关用户</h2>
+					{{end}}
+				</tbody>
+			</table>
+            <div align="middle">
+                {{if ge .PrevFrom 0}}
+                <a href="search?q={{.Query}}&from={{.PrevFrom}}">上一页</a>
+                {{end}}
+                <a href="search?q={{.Query}}&from={{.NextFrom}}">下一页</a>
+            </div>
+		</div>
+	</div>
+</div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/scripts.js"></script>
+  </body>
+</html>
